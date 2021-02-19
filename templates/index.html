@@ -1,0 +1,32 @@
+<html>
+
+<head>
+  <title>Home Page</title>
+</head>
+
+<body>
+  <h1>Home Page</h1>
+  <div id="container"></div>
+  <script>
+    function fetchVods() {
+      fetch("/api/vods").then(res => res.json()).then(json => {
+        console.log(json);
+        const container = document.getElementById('container');
+        json.forEach(item => {
+          const element = document.createElement('p');
+          const a = document.createElement('a')
+          a.href = `/movie/${item.title}`;
+          text = `${item.title} by ${item.actor}`;
+          const link = document.createTextNode(text);
+          a.appendChild(link);
+          element.appendChild(a);
+          container.appendChild(element);
+        });
+      });
+    }
+
+    fetchVods();
+  </script>
+</body>
+
+</html>
