@@ -16,6 +16,7 @@
 </div>
 
 <script>
+
   function fetchVods() {
     fetch("/api/vods").then(res => res.json()).then(json => {
       console.log(json);
@@ -23,21 +24,21 @@
       const vods = document.getElementById('container');
       console.log(vods);
       json.forEach(item => {
+
         const article = document.createElement('article');
         article.className = "video-container";
-
         const thumbnail = document.createElement('a')
         thumbnail.className = "thumbnail";
         thumbnail.setAttribute("data-duration", "12:24");
         thumbnail.href = `/movie/${item.title}`;
-        thumbnail.innerHTML = '<img class="thumbnail-image" src="http://unsplash.it/250/150?gravity=center" />';
+        thumbnail.innerHTML = `<img class="thumbnail-image" src="/media/vods/${item.title}/${item.thumbnail}" />`;
 
         article.appendChild(thumbnail);
 
         const bottomsection = document.createElement('div');
         bottomsection.className = "video-bottom-section";
         bottomsection.innerHTML = `<a href="#">
-            <img class="channel-icon" src="http://unsplash.it/36/36?gravity=center" />
+            <img class="channel-icon" src="" />
           </a>
           <div class="video-details">
             <a href="/movie/${item.title}" class="video-title">${item.title}</a>
