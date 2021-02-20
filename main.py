@@ -9,7 +9,8 @@ app = FastAPI(version=__version__)
 app.include_router(api_router, prefix="/api", tags=["api"])
 
 templates = Jinja2Templates(directory="templates")
-app.mount("/static", StaticFiles(directory=r"/home/septimo/static/vods"), name="static")
+app.mount("/media", StaticFiles(directory=r"/home/septimo/static/vods"), name="media")
+app.mount("/static", StaticFiles(directory="templates/static"), name="static")
 
 
 @app.get("/")
