@@ -1,76 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="static/css/styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <title>Welcome to Bilibili World</title>
-</head>
+{% block content %}
 
-<body>
-  <header class="header">
-    <a href="#">
-      <img src="static/images/logo.png" alt="YouTube Logo" class="youtube-logo" />
-    </a>
-    <form class="search-bar">
-      <input class="search-input" type="search" placeholder="Search" aria-label="Search" />
-      <button type="submit" class="search-btn">
-        <img src="static/images/magnify.svg" />
-      </button>
-    </form>
-    <div class="menu-icons">
-      <a href="#">
-        <img src="static/images/video-plus.svg" alt="Upload Video" />
-      </a>
-      <a href="#">
-        <img src="static/images/apps.svg" alt="Apps" />
-      </a>
-      <a href="#">
-        <img src="static/images/bell.svg" alt="Notifications" />
-      </a>
-      <a href="#">
-        <img class="menu-channel-icon" src="http:///unsplash.it/36/36?gravity=center" alt="Your Channel" />
-      </a>
-    </div>
-  </header>
-  <div class="categories">
-    <section class="category-section">
-      <button class="category active">All</button>
-      <button class="category">Python</button>
-      <button class="category">Cisco</button>
-      <button class="category">Rust</button>
-    </section>
-  </div>
-  <div class="videos">
-    <section class="video-section", id="container">
-    </section>
-  </div>
+<div class="categories">
+  <section class="category-section">
+    <button class="category active">All</button>
+    <button class="category">Python</button>
+    <button class="category">Cisco</button>
+    <button class="category">Rust</button>
+  </section>
+</div>
+<div class="videos">
+  <section class="video-section" , id="container">
+  </section>
+</div>
 
-  <script>
-    function fetchVods() {
-      fetch("/api/vods").then(res => res.json()).then(json => {
-        console.log(json);
+<script>
+  function fetchVods() {
+    fetch("/api/vods").then(res => res.json()).then(json => {
+      console.log(json);
 
-        const vods = document.getElementById('container');
-        console.log(vods);
-        json.forEach(item => {
-          const article = document.createElement('article');
-          article.className = "video-container";
+      const vods = document.getElementById('container');
+      console.log(vods);
+      json.forEach(item => {
+        const article = document.createElement('article');
+        article.className = "video-container";
 
-          const thumbnail = document.createElement('a')
-          thumbnail.className = "thumbnail";
-          thumbnail.setAttribute("data-duration", "12:24");
-          thumbnail.href = `/movie/${item.title}`;
-          thumbnail.innerHTML = '<img class="thumbnail-image" src="http://unsplash.it/250/150?gravity=center" />';
+        const thumbnail = document.createElement('a')
+        thumbnail.className = "thumbnail";
+        thumbnail.setAttribute("data-duration", "12:24");
+        thumbnail.href = `/movie/${item.title}`;
+        thumbnail.innerHTML = '<img class="thumbnail-image" src="http://unsplash.it/250/150?gravity=center" />';
 
-          article.appendChild(thumbnail);
+        article.appendChild(thumbnail);
 
-          const bottomsection = document.createElement('div');
-          bottomsection.className = "video-bottom-section";
-          bottomsection.innerHTML = `<a href="#">
+        const bottomsection = document.createElement('div');
+        bottomsection.className = "video-bottom-section";
+        bottomsection.innerHTML = `<a href="#">
             <img class="channel-icon" src="http://unsplash.it/36/36?gravity=center" />
           </a>
           <div class="video-details">
@@ -81,16 +47,14 @@
               •
               <span>1 week ago</span>
             </div>`;
-          article.append(bottomsection);
-          console.log(article);
+        article.append(bottomsection);
+        console.log(article);
 
-          vods.appendChild(article);
-        });
+        vods.appendChild(article);
       });
-    }
+    });
+  }
 
-    fetchVods();
-  </script>
-</body>
-
-</html>
+  fetchVods();
+</script>
+{% endblock %}
