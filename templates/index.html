@@ -38,11 +38,11 @@
         const bottomsection = document.createElement('div');
         bottomsection.className = "video-bottom-section";
         bottomsection.innerHTML = `<a href="#">
-            <img class="channel-icon" src="" />
+            <img class="channel-icon" src="/media/images/${item.actor.avatar}" />
           </a>
           <div class="video-details">
             <a href="/movie/${item.title}" class="video-title">${item.title}</a>
-            <a href="#" class="video-channel-name">${item.actor}</a>
+            <a href="#" class="video-channel-name">${item.actor.name}</a>
             <div class="video-metadata">
               <span>12K views</span>
               •
