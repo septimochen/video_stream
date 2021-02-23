@@ -7,6 +7,12 @@ body {
   margin: 0;
 }
 
+video {
+  width: 92%;
+  height: auto;
+  margin: 3%;
+}
+
 .video-section {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
