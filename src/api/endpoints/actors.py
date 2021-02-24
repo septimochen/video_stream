@@ -8,7 +8,7 @@ from src.api.endpoints import get_db
 
 router = APIRouter()
 
-@router.post("/", response_model=schemas.Vod)
+@router.post("/", response_model=schemas.Actor)
 def create_actor(actor: schemas.ActorCreate, db: Session = Depends(get_db)):
     db_actor = crud.get_actor_by_name(db, name=actor.name)
     if db_actor:
