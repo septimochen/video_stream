@@ -17,12 +17,7 @@ def create_vod(actor_id: int, vod: schemas.VodCreate, db: Session = Depends(get_
 
 
 @router.get("/", response_model=List[schemas.Vod])
-def read_vods(skip:int = 0, limit: int = 100, db: Session = Depends(get_db)):
+def read_vods(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     vods = crud.get_vods(db, skip=skip, limit=limit)
     # print(vods)
     return vods
-
-
-
-
-
