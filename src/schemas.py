@@ -3,12 +3,15 @@ from typing import List, Optional
 from pydantic import BaseModel
 from sqlalchemy import orm
 
+
 class ActorBase(BaseModel):
     name: str
     avatar: str
 
+
 class ActorCreate(ActorBase):
     pass
+
 
 class Actor(ActorBase):
     id: int
@@ -16,13 +19,17 @@ class Actor(ActorBase):
 
     class Config:
         orm_mode = True
+
+
 class VodBase(BaseModel):
     title: str
     thumbnail: str
     length: str
 
+
 class VodCreate(VodBase):
     pass
+
 
 class Vod(VodBase):
     id: int
@@ -30,7 +37,3 @@ class Vod(VodBase):
 
     class Config:
         orm_mode = True
-
-
-
-
